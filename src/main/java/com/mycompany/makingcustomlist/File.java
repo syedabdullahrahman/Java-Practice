@@ -5,6 +5,14 @@ import java.time.LocalDate;
  *
  * @author Abdullah
  */
+
+/**
+ * Its a sample class which represents a File
+ * that has a Name,Size,Creation Date and Type.
+ * 
+ * The Class has some custom compare methods using different properties i.e File Name, Creation Date,  Name & Size etc
+ * 
+ * */
 public class File implements Comparable<File> {
 
     String fileName;
@@ -67,13 +75,20 @@ public class File implements Comparable<File> {
 	}
 
     /**
-     * Some custom compare methods using differnt properties i.e File Name, Creation Date,  Name & Size etc
-     * 
+     * Compare two files using their Name
+     * @param File o
+     * @return -ve if less than
+     * @return 0 if Equal
+     * @return +ve if greater than
      * */ 
 	
     public int compareByName(File o) {
         return fileName.compareTo(o.getFileName());
     }
+    
+    /**
+     * Compare two files using their Name and Size
+     * */ 
     public int compareByNameAndSize(File o) {
         int i =  this.compareByName(o);
         
@@ -88,10 +103,18 @@ public class File implements Comparable<File> {
         }
     }
     
+    /**
+     * Compare two files using their Types
+     * 
+     * */ 
     public int compareByType(File o) {
         return fileType.compareTo(o.getFileType());
     }
 
+    /**
+     * Compare two files using their Size
+     * 
+     * */ 
     public int compareBySize(File o) {
         double d = fileSize - o.getFileSize();
         if (d < 0) {
@@ -102,10 +125,19 @@ public class File implements Comparable<File> {
             return 0;
         }
     }
+    /**
+     * Compare two files using their Creation Date
+     * 
+     * */ 
     public int compareByCreationDate(File o){
         return creationDate.compareTo(o.getCreationDate());
     }
-
+    
+    /**
+     * @Override compareTo() methods which compare two files using their Name
+     * 
+     * */ 
+    
     @Override
     public int compareTo(File o) {  // using fileName
         return fileName.compareTo(o.getFileName());

@@ -38,8 +38,12 @@ public class CustomList<E> {
         array = new Object[size];
     }
 
+    /**
+     * Add an object to the CustomList
+     * @param E e
+     * @return CustomList<E>
+     * */
     public CustomList<E> add(E e) {
-        // TODO Auto-generated method stub
         if (nextElement == size) {
             reallocation(INCREMENT);
         }
@@ -48,6 +52,12 @@ public class CustomList<E> {
         return this;
     }
     
+    /**
+     * Returns an object from the CustomList
+     * by using the position of that object 
+     *  @param int pos 
+     *  @return E
+     * */
     public Object get(int pos) {
         if (pos < 0) {
             return NullPointerException.class;
@@ -65,35 +75,46 @@ public class CustomList<E> {
         return nextElement;
     }
 
+    
+    /**
+     * Add an object list to the CustomList.
+     * 
+	 * Need some more space. Thst's why calculating how much memory needed 
+	 * Then allocating it by calling 
+	 * 		reallocation(c.size() + nextElement - size);
+	 * 
+	 * Incrementing the size which is also the nextElement pointer 
+	 * 		nextElement += c.size();
+	 * */
+    
     public CustomList<E> addAll(Collection<? extends E> c) {
-    	/**
-    	 * Need some more space. Thst's why calculating how much memory needed 
-    	 * Then allocating it 
-    	 * 
-    	 * */
+    	
         if (c.size() + nextElement > size) {
             reallocation(c.size() + nextElement - size);
         }
         System.arraycopy(c.toArray(), 0, array, this.size(), c.size());
         
-        /**
-         * Incrementing the size which is also the nextElement pointer 
-         * 
-         * */
         nextElement += c.size();
         return this;
     }
 
     /**
      *	Reallocating memory for space shortage 
+     *	@param increament 
+     *	@return Boolean
      */
-    
     private boolean reallocation(int increment) {
         size += increment;
         array = Arrays.copyOf(array, size);
         return true;
     }
 
+    /**
+     * Removes an object from the CustomList
+     * @param E object
+     * @return {@link Object}
+     * */
+    
     public Object remove(E object) {
     	int pos = find(object);
         if (pos < 0) {
@@ -112,6 +133,7 @@ public class CustomList<E> {
     }
     /**
      * Find the object in CustomList and return the position of that object
+     * 
      * */
 	public int find(E object) {
 		int pos = -1;
@@ -149,10 +171,12 @@ public class CustomList<E> {
 		return true;
 	}
 
+	/**
+     *  Clears the CustomList 
+     *  
+	*/
 	public void clear() {
-        /**
-         *  Need to prepare another method for allocation
-		*/
+        
         nextElement = 0;
         size = 5 ;
         array = (E[]) new Object[5];
