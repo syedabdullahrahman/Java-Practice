@@ -1,4 +1,4 @@
-package com.mycompany.makingcustomlist;
+package CustomlistAndOrdering;
 
 import java.util.Arrays;
 import java.util.Collection;

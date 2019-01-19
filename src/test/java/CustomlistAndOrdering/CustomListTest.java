@@ -1,4 +1,4 @@
-package com.mycompany.makingcustomlist;
+package CustomlistAndOrdering;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
@@ -9,6 +9,9 @@ import javax.sound.midi.Soundbank;
 
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
+
+import CustomlistAndOrdering.CustomList;
+import CustomlistAndOrdering.File;
 
 /**
 *
