@@ -64,12 +64,13 @@ public class FileTest {
 	@Test 
 	void testSortByNameAndSize(){
 		List<File> list = setList();
-		Collections.sort(list,new Comparator<File>() {
-			@Override
-			public int compare(File o1, File o2) {
-				return o1.compareByNameAndSize(o2);
-			}
-		});
+//		Collections.sort(list,new Comparator<File>() {
+//			@Override
+//			public int compare(File o1, File o2) {
+//				return o1.compareByNameAndSize(o2);
+//			}
+//		});
+		Collections.sort(list,(o1,o2)-> o1.compareByNameAndSize(o2));
 		List<File> list2 = getSortedListByNameAndSze();
 		assertEquals(list, list2);
 	}
