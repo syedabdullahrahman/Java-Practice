@@ -51,9 +51,7 @@ public class FileTest {
 		File f1=new File("Book", 20.5, LocalDate.of(2015, 3, 20), "pdf");
 		File f2 = new File("Book", 20.5, LocalDate.of(2015, 3, 20), "pdf");
 		assertEquals(0,f1.compareTo(f1));
-		
 	}
-	
 	
 	@Test 
 	void testSortByName(){
@@ -68,6 +66,8 @@ public class FileTest {
 		List<File> list = setList();
 		Collections.sort(list,(o1,o2)-> o1.compareByNameAndSize(o2));
 		List<File> list2 = getSortedListByNameAndSze();
+		System.out.println(list.toString());
+		System.out.println(list2.toString());
 		assertEquals(list, list2);
 	}
 	

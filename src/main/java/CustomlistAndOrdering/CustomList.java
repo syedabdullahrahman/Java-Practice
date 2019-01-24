@@ -2,10 +2,6 @@ package CustomlistAndOrdering;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.function.Consumer;
-
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.fields.FieldIndexSelector;
 
 /**
 *
@@ -13,7 +9,6 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.common.fields.Field
 */
 
 public class CustomList<E> {
-
 	/** Denoting the current size */
 	private int size;
 	
@@ -118,13 +113,11 @@ public class CustomList<E> {
     public Object remove(E object) {
     	int pos = find(object);
         if (pos < 0) {
-            return NullPointerException.class;
+            //return NullPointerException.class;
         } else if (pos > nextElement) {
-            return ArrayIndexOutOfBoundsException.class;
+            //return ArrayIndexOutOfBoundsException.class;
         } 
-        else if(pos==-1) {
-			
-		}else {
+        else {
             System.arraycopy(array, pos + 1, array, pos, nextElement-pos-1);
             nextElement--;
             array[nextElement]=null;
@@ -135,10 +128,15 @@ public class CustomList<E> {
      * Find the object in CustomList and return the position of that object
      * 
      * */
-	public int find(E object) {
+	private int find(E object) {
 		int pos = -1;
 		for(int i=0;i<nextElement;i++)
-			if(array[i].equals(object)) return pos;
+			if(object.equals(array[i]))
+			{
+				System.out.println(i);
+				return i;
+			}
+		System.out.println(pos);		
 		return pos;
 	}
 
@@ -164,8 +162,9 @@ public class CustomList<E> {
 		CustomList<?> other = (CustomList<?>) obj;
 		if (INCREMENT != other.INCREMENT)
 			return false;
-		if (!Arrays.equals(array, other.array))
-			return false;
+		for(int i=0;i<this.nextElement;i++)
+			if(!other.array[i].equals(this.array[i]))
+				return false;
 		if (nextElement != other.nextElement)
 			return false;
 		return true;
@@ -176,10 +175,9 @@ public class CustomList<E> {
      *  
 	*/
 	public void clear() {
-        
         nextElement = 0;
         size = 5 ;
-        array = (E[]) new Object[5];
+        array = new Object[5];
     }
 
 	@Override
